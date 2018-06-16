@@ -1,1 +1,2 @@
-# GodotGameJam2018
+# Burning out star platformer
+
