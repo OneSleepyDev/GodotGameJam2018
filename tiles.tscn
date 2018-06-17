@@ -9,22 +9,39 @@
 
 [node name="grass3" type="Sprite" parent="." index="0"]
 
-position = Vector2( 247.084, 294.747 )
 texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="grass3" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="grass3/StaticBody2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -14.8279, 7.19586, -0.447113, 16.2107, 17.6971, 2.49086, 2.22166, -9.18869 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="grass4" type="Sprite" parent="." index="1"]
 
-position = Vector2( 247.084, 294.747 )
+position = Vector2( 106.7, 45.5656 )
 texture = ExtResource( 2 )
 
 [node name="iso-grass2" type="Sprite" parent="." index="2"]
 
-position = Vector2( 247.084, 294.747 )
+position = Vector2( 172.548, 43.3997 )
 texture = ExtResource( 3 )
 
 [node name="iso-grass" type="Sprite" parent="." index="3"]
 
-position = Vector2( 247.084, 294.747 )
+position = Vector2( 250.397, 42.7228 )
 texture = ExtResource( 4 )
 
 
