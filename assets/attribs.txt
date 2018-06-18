@@ -1,0 +1,3 @@
+red_giant.png, sun.png
+https://opengameart.org/content/space-game-art-pack-extended
+CC-BY-SA 3.0

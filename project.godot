@@ -14,6 +14,10 @@ config/name="GodotGameJam2018"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[gui]
+
+theme/custom_font="res://assets/hemi head bd it.ttf"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
