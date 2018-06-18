@@ -1,8 +1,11 @@
 extends KinematicBody2D
 
-const SPEED = 1200
+var SPEED = 400
 var motion = Vector2()
-var temp = 100
+var temp = 60
+var red
+var green
+var blue
 
 
 # Thank you GDquest!
@@ -12,10 +15,38 @@ func cartesian_to_isometric(cartesian):
 func _add_temp(temperature):
 	temp += temperature
 	
+func _stats_change():
+	if temp >= 100:
+		blue = 1
+		red = .9
+		green = .9
+		SPEED = 300
+	if temp <100 && temp > 70:
+		blue = .6
+		red = .6
+		green = .5
+		SPEED = 200
+	if temp < 70 && temp > 40:
+		blue = 0
+		red = .6
+		green = 0
+		SPEED = 150
+	if temp <= 40:
+		blue = 0
+		red = .6
+		green = 0
+		SPEED = 100
+	get_node("sprite").set_modulate(Color(red,green,blue))
+	get_node("Particles2D").set_modulate(Color(red,green,blue))
+	
 func _physics_process(delta):
-	# Lower the temperture as it goes on
+	get_node("Label").set_text(String(temp)+"c")
+	# Lower the temperture as time goes on
 	temp -= .01
-	print(temp)
+	#if temp <=0:
+	#	get_tree
+	_stats_change()
+	
 	
 	# Send toward the sun on the path
 	get_parent().set_offset(get_parent().get_offset() + SPEED *delta)
@@ -32,3 +63,7 @@ func _physics_process(delta):
 	motion = cartesian_to_isometric(motion)
 
 	move_and_slide(motion)
+
+
+#func _on_Area2D_body_entered(body):
+	

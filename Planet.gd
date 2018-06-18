@@ -15,14 +15,17 @@ func _ready():
 	isBad = bool(round(rand_range(0,1)))
 	amountOfImpact = round(rand_range(MINIMUM_IMPACT,MAXIMUM_IMPACT))
 	if amountOfImpact >= 45 && isBad == false:
+		get_node("Label").set_text(String(amountOfImpact)+"c")
 		blue = 1
 		red = .8
 		green = .8
 	if amountOfImpact < 45 && amountOfImpact >= 0  && isBad == false:
+		get_node("Label").set_text(String(amountOfImpact)+"c")
 		blue = .6
 		red = .6
 		green = 0
 	if isBad:
+		get_node("Label").set_text("-"+String(amountOfImpact)+"c")
 		blue = 0
 		red = .6
 		green = 0
@@ -31,7 +34,7 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	if isBad:
-		get_node("../Path2D/PathFollow2D/Star")._add_temp(amountOfImpact*-1)
+		get_node("../../Path2D/PathFollow2D/Star")._add_temp(amountOfImpact*-1)
 	else:
-		get_node("../Path2D/PathFollow2D/Star")._add_temp(amountOfImpact)
+		get_node("../../Path2D/PathFollow2D/Star")._add_temp(amountOfImpact)
 	

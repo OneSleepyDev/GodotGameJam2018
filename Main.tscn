@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Planet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Star.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sun.png" type="Texture" id=3]
+[ext_resource path="res://assets/flare_01_0.png" type="Texture" id=4]
+[ext_resource path="res://Star.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/font.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="CircleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 172.656
 
 [sub_resource type="Curve2D" id=1]
 
@@ -11,6 +19,67 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 537.152, 10677.9, 0, 0, 0, 0, 14889.4, 3360.77 )
 }
 
+[sub_resource type="Curve" id=3]
+
+min_value = -1.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+flags = 4
+width = 2048
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 50.0
+flatness = 0.0
+gravity = Vector3( -10, 20, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 1.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 5.0
+scale_random = 1.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+hue_variation_curve = SubResource( 4 )
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Angular Velocity", "Color", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Scale", "Spread" ]
+
+[sub_resource type="DynamicFont" id=6]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
 [node name="Main" type="Node2D" index="0"]
 
 [node name="Map" parent="." index="0" instance=ExtResource( 1 )]
@@ -18,38 +87,159 @@ _data = {
 position = Vector2( -153.513, -0.589966 )
 cell_size = Vector2( 256, 256 )
 cell_custom_transform = Transform2D( 20, 0, 2, 1, 0, 0 )
-tile_data = PoolIntArray( 786490, 2, 0 )
+tile_data = PoolIntArray( 589877, 4, 0, 655411, 4, 0, 983092, 1, 0, 1048620, 1, 0, 1048636, 4, 0, 1179684, 1, 0, 1245214, 0, 0, 1310750, 4, 0, 1310767, 0, 0, 1376294, 4, 0, 1507352, 1, 0, 1507361, 0, 0, 1572900, 1, 0, 1638422, 0, 0, 1638426, 0, 0, 1638428, 4, 0, 1703967, 4, 0, 1769503, 1, 0, 1966100, 1, 0, 2097160, 0, 0, 2228241, 0, 0, 2359301, 4, 0, 2555905, 1, 0, 2555915, 0, 0, 2686975, 4, 0, 2686993, 4, 0 )
 
-[node name="Planet" parent="." index="1" instance=ExtResource( 2 )]
+[node name="planets" type="Node2D" parent="." index="1"]
 
-position = Vector2( 7286.61, 6336.18 )
+position = Vector2( 12912.4, 5793.17 )
 
-[node name="Planet2" parent="." index="2" instance=ExtResource( 2 )]
+[node name="Planet" parent="planets" index="0" instance=ExtResource( 2 )]
 
-position = Vector2( 8280.23, 6883.39 )
+position = Vector2( -11346.7, 4796.2 )
+
+[node name="Planet2" parent="planets" index="1" instance=ExtResource( 2 )]
+
+position = Vector2( -11770.3, 4147.54 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Planet3" parent="." index="3" instance=ExtResource( 2 )]
+[node name="Planet3" parent="planets" index="2" instance=ExtResource( 2 )]
 
-position = Vector2( 5915.89, 7239.59 )
+position = Vector2( -10983.6, 3812.94 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Planet4" parent="." index="4" instance=ExtResource( 2 )]
+[node name="Planet4" parent="planets" index="3" instance=ExtResource( 2 )]
 
-position = Vector2( 7061.92, 7172.48 )
+position = Vector2( -10384.5, 4372.76 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Planet5" parent="." index="5" instance=ExtResource( 2 )]
+[node name="Planet5" parent="planets" index="4" instance=ExtResource( 2 )]
 
-position = Vector2( 7686.56, 7951.99 )
+position = Vector2( -10470.2, 3310.33 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Planet6" parent="." index="6" instance=ExtResource( 2 )]
+[node name="Planet6" parent="planets" index="5" instance=ExtResource( 2 )]
 
-position = Vector2( 8151.17, 6253.59 )
+position = Vector2( -9315.43, 3860.61 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Path2D" type="Path2D" parent="." index="7"]
+[node name="Planet7" parent="planets" index="6" instance=ExtResource( 2 )]
+
+position = Vector2( -9621.86, 2851.74 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet8" parent="planets" index="7" instance=ExtResource( 2 )]
+
+position = Vector2( -5815.29, 1866.99 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet9" parent="planets" index="8" instance=ExtResource( 2 )]
+
+position = Vector2( -8725.11, 2591.81 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet10" parent="planets" index="9" instance=ExtResource( 2 )]
+
+position = Vector2( -7264.76, 1893.91 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet11" parent="planets" index="10" instance=ExtResource( 2 )]
+
+position = Vector2( -6521, 2203.44 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet12" parent="planets" index="11" instance=ExtResource( 2 )]
+
+position = Vector2( -7241.62, 2524.08 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet13" parent="planets" index="12" instance=ExtResource( 2 )]
+
+position = Vector2( -6370.49, 1471.88 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet14" parent="planets" index="13" instance=ExtResource( 2 )]
+
+position = Vector2( -8153.27, 3241.63 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet15" parent="planets" index="14" instance=ExtResource( 2 )]
+
+position = Vector2( -4972.08, 810.307 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet16" parent="planets" index="15" instance=ExtResource( 2 )]
+
+position = Vector2( -5237.63, 1466.35 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet17" parent="planets" index="16" instance=ExtResource( 2 )]
+
+position = Vector2( -4552.16, 1130.75 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet18" parent="planets" index="17" instance=ExtResource( 2 )]
+
+position = Vector2( -5635.81, 1164.97 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet19" parent="planets" index="18" instance=ExtResource( 2 )]
+
+position = Vector2( -3718.02, -354.642 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet24" parent="planets" index="19" instance=ExtResource( 2 )]
+
+position = Vector2( -314.601, -200.202 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet25" parent="planets" index="20" instance=ExtResource( 2 )]
+
+position = Vector2( -1630.21, -509.083 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet20" parent="planets" index="21" instance=ExtResource( 2 )]
+
+position = Vector2( -2265.13, 640.644 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet21" parent="planets" index="22" instance=ExtResource( 2 )]
+
+position = Vector2( -2528.25, -915.205 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet22" parent="planets" index="23" instance=ExtResource( 2 )]
+
+position = Vector2( -1298.45, 291.721 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Planet23" parent="planets" index="24" instance=ExtResource( 2 )]
+
+position = Vector2( -1584.45, -1418.57 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="sun" type="Sprite" parent="." index="2"]
+
+position = Vector2( 17721.9, 1351.49 )
+scale = Vector2( 20, 20 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="sun" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sun/Area2D" index="0"]
+
+position = Vector2( -17.6799, 13.2599 )
+shape = SubResource( 5 )
+
+[node name="Path2D" type="Path2D" parent="." index="3"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 51.623, -30.9737 )
@@ -66,8 +256,82 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="Star" parent="Path2D/PathFollow2D" index="0" instance=ExtResource( 3 )]
+[node name="Particles2D2" type="Particles2D" parent="Path2D/PathFollow2D" index="0"]
+
+modulate = Color( 0.996094, 0.84471, 0.0272369, 1 )
+show_behind_parent = true
+position = Vector2( 21.5519, -18.3799 )
+emitting = true
+amount = 3
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 2 )
+texture = ExtResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Transform", "Visibility" ]
+
+[node name="Star" parent="Path2D/PathFollow2D" index="1" instance=ExtResource( 5 )]
 
 position = Vector2( 21.9922, -21.9004 )
+
+[node name="Particles2D" type="Particles2D" parent="Path2D/PathFollow2D/Star" index="3"]
+
+show_behind_parent = true
+position = Vector2( -0.440247, 3.52051 )
+emitting = true
+amount = 3
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 2 )
+texture = ExtResource( 4 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Material", "Process Material", "Textures", "Transform", "Visibility" ]
+
+[node name="Label" type="Label" parent="Path2D/PathFollow2D/Star" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -109.0
+margin_top = -94.0
+margin_right = 736.0
+margin_bottom = 387.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+text = "c"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[connection signal="body_entered" from="sun/Area2D" to="Path2D/PathFollow2D/Star" method="_on_Area2D_body_entered"]
 
 

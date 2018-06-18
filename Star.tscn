@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 6.25669
+radius = 50.0934
 
 [node name="Star" type="KinematicBody2D" index="0"]
 
@@ -20,7 +20,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
+[node name="sprite" type="Sprite" parent="." index="0"]
 
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
@@ -28,11 +28,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
 
-offset = Vector2( 20, -30 )
+offset = Vector2( 90, -120 )
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 20, 20 )
+zoom = Vector2( 1.25, 1.25 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000005
@@ -57,5 +57,6 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing" ]
 
 position = Vector2( -0.230835, 2.69308 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 
