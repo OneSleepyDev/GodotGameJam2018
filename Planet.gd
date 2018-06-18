@@ -1,6 +1,5 @@
 extends Node2D
 
-# class member variables go here, for example:
 var isBad = false
 var amountOfImpact = 0
 var red
@@ -29,9 +28,10 @@ func _ready():
 		green = 0
 
 	get_node("giant").set_modulate(Color(red,green,blue))
-	
-func _collision ():
+
+func _on_Area2D_body_entered(body):
 	if isBad:
-		return amountOfImpact*-1
+		get_node("../Path2D/PathFollow2D/Star")._add_temp(amountOfImpact*-1)
 	else:
-		return amountOfImpact
+		get_node("../Path2D/PathFollow2D/Star")._add_temp(amountOfImpact)
+	
