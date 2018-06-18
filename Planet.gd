@@ -18,7 +18,7 @@ func _init():
 
 
 func _collision ():
-	if (isBad)
+	if isBad:
 		return amountOfImpact*-1
 	else:
 		return amountOfImpact
