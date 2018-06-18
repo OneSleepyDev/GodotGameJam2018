@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ove Melaa - Dark Blue.ogg-00cdf84578a67c4795aaac92a06b75c0.oggstr"
+
+[deps]
+
+source_file="res://assets/Ove Melaa - Dark Blue.ogg"
+dest_files=[ "res://.import/Ove Melaa - Dark Blue.ogg-00cdf84578a67c4795aaac92a06b75c0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Planet.tscn" type="PackedScene" id=2]
@@ -6,13 +6,15 @@
 [ext_resource path="res://assets/flare_01_0.png" type="Texture" id=4]
 [ext_resource path="res://Star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/font.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/Ove Melaa - Dark Blue.ogg" type="AudioStream" id=7]
+[ext_resource path="res://AudioStreamPlayer.gd" type="Script" id=8]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 172.656
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id=2]
 
 bake_interval = 5.0
 _data = {
@@ -32,7 +34,7 @@ flags = 4
 width = 2048
 curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=5]
 
 render_priority = 0
 trail_divisor = 1
@@ -80,6 +82,51 @@ use_filter = false
 font_data = ExtResource( 6 )
 _sections_unfolded = [ "Font", "Settings" ]
 
+[sub_resource type="StyleBoxFlat" id=7]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.335938, 0, 0, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 107
+expand_margin_left = 0.0
+expand_margin_right = 60.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Anti Aliasing", "Border", "Border Width", "Corner Radius", "Expand Margin", "Shadow" ]
+
+[sub_resource type="DynamicFont" id=8]
+
+size = 600
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=9]
+
+size = 400
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
 [node name="Main" type="Node2D" index="0"]
 
 [node name="Map" parent="." index="0" instance=ExtResource( 1 )]
@@ -91,6 +138,7 @@ tile_data = PoolIntArray( 589877, 4, 0, 655411, 4, 0, 983092, 1, 0, 1048620, 1, 
 
 [node name="planets" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 position = Vector2( 12912.4, 5793.17 )
 
 [node name="Planet" parent="planets" index="0" instance=ExtResource( 2 )]
@@ -237,13 +285,13 @@ audio_bus_name = "Master"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sun/Area2D" index="0"]
 
 position = Vector2( -17.6799, 13.2599 )
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="Path2D" type="Path2D" parent="." index="3"]
 
 self_modulate = Color( 0.5, 0.6, 1, 0.7 )
 position = Vector2( 51.623, -30.9737 )
-curve = SubResource( 1 )
+curve = SubResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" index="0"]
 
@@ -261,8 +309,9 @@ lookahead = 4.0
 modulate = Color( 0.996094, 0.84471, 0.0272369, 1 )
 show_behind_parent = true
 position = Vector2( 21.5519, -18.3799 )
+scale = Vector2( 0.5, 0.5 )
 emitting = true
-amount = 3
+amount = 10
 lifetime = 1.0
 one_shot = false
 preprocess = 0.0
@@ -274,7 +323,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 2 )
+process_material = SubResource( 5 )
 texture = ExtResource( 4 )
 normal_map = null
 h_frames = 1
@@ -302,7 +351,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 2 )
+process_material = SubResource( 5 )
 texture = ExtResource( 4 )
 normal_map = null
 h_frames = 1
@@ -332,6 +381,100 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
 
+[node name="Label2" type="Label" parent="Path2D/PathFollow2D/Star" index="5"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -1965.0
+margin_top = -367.0
+margin_right = 1702.0
+margin_bottom = 354.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "You made it!"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Mouse", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[node name="Label3" type="Label" parent="Path2D/PathFollow2D/Star" index="6"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -1965.0
+margin_top = -367.0
+margin_right = 1702.0
+margin_bottom = 354.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Burned out"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Mouse", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[node name="Button" type="Button" parent="Path2D/PathFollow2D/Star" index="7"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -1806.0
+margin_top = 365.0
+margin_right = 1594.0
+margin_bottom = 852.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 9 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Play again?"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+script = ExtResource( 8 )
+
 [connection signal="body_entered" from="sun/Area2D" to="Path2D/PathFollow2D/Star" method="_on_Area2D_body_entered"]
+
+[connection signal="pressed" from="Path2D/PathFollow2D/Star/Button" to="Path2D/PathFollow2D/Star" method="_on_Button_pressed"]
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_AudioStreamPlayer_finished"]
 
 

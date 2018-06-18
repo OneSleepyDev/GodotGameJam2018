@@ -20,7 +20,7 @@ func _stats_change():
 		blue = 1
 		red = .9
 		green = .9
-		SPEED = 300
+		SPEED = 600
 	if temp <100 && temp > 70:
 		blue = .6
 		red = .6
@@ -42,11 +42,13 @@ func _stats_change():
 func _physics_process(delta):
 	get_node("Label").set_text(String(temp)+"c")
 	# Lower the temperture as time goes on
-	temp -= .01
-	#if temp <=0:
-	#	get_tree
+	temp -= .07
+	if temp <= 0:
+		get_node("../../../AudioStreamPlayer").set_pitch_scale(.6)
+		get_node("Camera2D").set_zoom(Vector2(4,4))
+		get_node("Label3").visible = true
+		get_node("Button").visible = true
 	_stats_change()
-	
 	
 	# Send toward the sun on the path
 	get_parent().set_offset(get_parent().get_offset() + SPEED *delta)
@@ -64,6 +66,11 @@ func _physics_process(delta):
 
 	move_and_slide(motion)
 
+func _on_Area2D_body_entered(body):
+	get_node("Camera2D").set_zoom(Vector2(4,4))
+	get_node("Label2").visible = true
+	get_node("Button").visible = true
 
-#func _on_Area2D_body_entered(body):
-	
+
+func _on_Button_pressed():
+	get_tree().reload_current_scene()
