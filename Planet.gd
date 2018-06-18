@@ -5,6 +5,7 @@ var isBad = false
 var amountOfImpact = 0
 
 # constants
+const MINIMUM_IMPACT = 0
 const MAXIMUM_IMPACT = 50
 
 func _ready():
@@ -14,7 +15,7 @@ func _ready():
 
 func _init():
 	isBad = bool(round(rand_range(0,1)))
-	amountOfImpact = round(rand_range(0,MAXIMUM_IMPACT))
+	amountOfImpact = round(rand_range(MINIMUM_IMPACT,MAXIMUM_IMPACT))
 
 
 func _collision ():
