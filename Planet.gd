@@ -22,7 +22,7 @@ func _ready():
 	if amountOfImpact < 45 && amountOfImpact >= 0  && isBad == false:
 		get_node("Label").set_text(String(amountOfImpact)+"c")
 		blue = .6
-		red = .6
+		red = 0
 		green = 0
 	if isBad:
 		get_node("Label").set_text("-"+String(amountOfImpact)+"c")
